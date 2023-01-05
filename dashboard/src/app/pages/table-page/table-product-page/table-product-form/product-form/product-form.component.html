@@ -1,0 +1,61 @@
+<form class="needs-validation" [formGroup]="productInfoForm" (submit)="changeProductInfo()">
+    <div class="row ">
+        <div class="col-sm-6">
+            <label for="productName" class="form-label">Name</label>
+            <input type="name" class="form-control" id="productName" placeholder="Name of product" [formControlName]="controlProduct.productName" />
+        </div>
+        <div class="col-sm-4">
+            <label for="price " class="form-label">Price</label>
+            <div class="input-group">
+                <input type="number " class="form-control" id="price " placeholder="Product Price " [formControlName]="controlProduct.price" />
+                <span class="input-group-text">$</span>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="name " class="form-label">Active</label>
+            <input class="form-control" [formControlName]="controlProduct.isActive" />
+        </div>
+        <div class="col-12">
+            <label for="systemrq" class="form-label">Short Description</label>
+            <textarea class="col-12 form-control" [formControlName]="controlProduct.shortDescription"></textarea>
+        </div>
+
+        <div class="col-sm-4">
+            <label for="price " class="form-label">Sale</label>
+            <div class="input-group">
+                <input type="number " style="padding: 4.5%" class="form-control" id="price " placeholder="Sale" [formControlName]="controlProduct.salePersent" />
+                <span class="input-group-text">%</span>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <label for="price " class="form-label">Start Day</label>
+            <div class="input-group">
+                <p-calendar [showTime]="true" [showSeconds]="true" [formControlName]="controlProduct.saleStartDay" [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <label for="price" class="form-label">End Day</label>
+            <div class="input-group">
+                <p-calendar [showTime]="true" [showSeconds]="true" [formControlName]="controlProduct.saleEndDay" [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+        </div>
+        <div class="col-sm-4 mb-5">
+            <label for="name " class="form-label text-start">Img 1</label>
+            <input type="text" class="form-control" id="name " placeholder="Name of product" [formControlName]="controlProduct.imgX" />
+            <img [src]="productInfoForm.get(controlProduct.imgX)?.value" height="100% " width="100%" />
+        </div>
+        <div class="col-sm-8 mb-5">
+            <label for="name" class="form-label text-center">Img 2</label>
+            <input type="text" class="form-control" id="name " placeholder="Name of product" [formControlName]="controlProduct.imgY" />
+            <img [src]="productInfoForm.get(controlProduct.imgY)?.value" height="100% " width="100%" />
+        </div>
+
+        <div class="col-12 mt-1"></div>
+        <div class="col-12 mt-4">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    </div>
+</form>

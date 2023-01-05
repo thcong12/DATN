@@ -1,0 +1,131 @@
+<div class="container p-3" style="height: 1000px">
+    <div class="row d-flex align-items-center" style="background-color: #393e46; border-radius: 10px">
+        <div class="col-sm-3 p-3">
+            <img [src]="userDetail.avatar" width="200px " height="200px" />
+        </div>
+        <div class="col-sm-6">
+            <h1>{{ userDetail.fullName }}</h1>
+            <p>{{ userDetail.description }}</p>
+        </div>
+        <div class="col-sm-3">
+            <p>
+                You can feature one of your Badges here. Select one from your edit profile page.
+            </p>
+            <button class="btn btn-dark" routerLink="/user/profile/edit">
+        Edit profile
+      </button>
+        </div>
+    </div>
+    <div class="pt-4">
+        <div class="row">
+            <div class="col-sm-9 p-0 pe-2">
+                <div class="listProduct__list" *ngIf="id === 1">
+                    <h2 class="p-2" style="background-color: #393e46; color: #eeeeee">
+                        Your library
+                    </h2>
+                    <div class="listProduct__list__page" style="height: 590px; overflow-y: auto; overflow-x: hidden">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="row px-3" style="background-color: #393e46; overflow-y: auto" *ngFor="let product of userLibraries; let i = index">
+                                <img class="col-3" [src]="product.product.imgY.url + '?h=140&resize=1&w=80'" />
+                                <div class="col-7 d-flex flex-column justify-content-between" style="width: 60%">
+                                    <h3 style="color: #eeeeee">
+                                        {{ product.product.productName }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="id === 2">
+                    <h2 class="p-2" style="background-color: #393e46; color: #eeeeee">
+                        Your Order
+                    </h2>
+                    <div style="height: 590px; overflow-y: auto; overflow-x: hidden">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="row p-3" style="background-color: #393e46" *ngFor="let item of userOrder; let i = index">
+                                <div class="col-sm-9">
+                                    <h3 style="color: #eeeeee">Order Id:{{ item._id }}</h3>
+                                </div>
+                                <div class="d-flex justify-content-between col-sm-3">
+                                    <button class="btn btn-success" *ngIf="item.isPaid">
+                    Success
+                  </button>
+                                    <button class="btn btn-danger" *ngIf="!item.isPaid">
+                    Failed
+                  </button>
+                                    <button class="btn btn-primary" (click)="displayOrderDetail(item._id)">
+                    View
+                  </button>
+                                </div>
+                            </div>
+                            <p-dialog header="Order Detail" [(visible)]="displayOrder" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                                <div *ngIf="orderDetail">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h3>OrderId: {{ orderDetail.order._id }}</h3>
+                                            <h3>
+                                                Create At: {{ orderDetail.order.createdAt | date : "M/d/yy, h:mm a" }}
+                                            </h3>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h3>
+                                                Payment method: {{ orderDetail.order.paymentMethod }}
+                                            </h3>
+                                            <h3>
+                                                Paid At: {{ orderDetail.order.paidAt | date : "M/d/yy, h:mm a" }}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column" style="
+                      height: 200px;
+                      width: 100%;
+                      overflow-y: auto;
+                      overflow-x: hidden;
+                    ">
+                                        <div class="row" *ngFor="let item of orderDetail.orderItem">
+                                            <div class="col-3">
+                                                <img [src]="item.imgY.url" width="100%" />
+                                            </div>
+                                            <div class="col-9">
+                                                <h3>{{ item.productName }}</h3>
+                                                <span>{{ item.price | currency : "USD" }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <h2>Total:{{ orderDetail.total | currency : "USD" }}</h2>
+                                    </div>
+                                </div>
+                                <ng-template pTemplate="footer">
+                                    <p-button icon="pi pi-check" (click)="displayOrder = false" label="Ok" styleClass="p-button-text"></p-button>
+                                    <p-button icon="pi pi-check" *ngIf="!orderDetail.order.isPaid" label="Re-purchased" styleClass="p-button-text"></p-button>
+                                </ng-template>
+                            </p-dialog>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="id === 3">
+                    <h2 class="p-2" style="background-color: #393e46; color: #eeeeee">
+                        Your WishList
+                    </h2>
+                    <div style="height: 590px; overflow-y: auto; overflow-x: hidden">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="row px-3" style="background-color: #393e46; overflow-y: auto" *ngFor="let product of userLibraries; let i = index">
+                                <img class="col-3" [src]="product.product.imgY.url + '?h=140&resize=1&w=80'" />
+                                <div class="col-7 d-flex flex-column justify-content-between" style="width: 60%">
+                                    <h3 style="color: #eeeeee">
+                                        {{ product.product.productName }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 d-flex flex-column pt-5" style="background-color: #393e46">
+                <a class="fs-4 p-3" style="color: #eeeeee" *ngFor="let item of listLink" [id]="item.id" (click)="display(item.id)">{{ item.content }}</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

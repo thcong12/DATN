@@ -1,0 +1,153 @@
+@import "/src/assets/scss/color.scss";
+$cardWidth: 23%;
+@function gapCalc($item, $maxWidth) {
+    @if ($item==0) {
+        @return 0;
+    }
+    @else {
+        @return calc(($maxWidth - ($cardWidth * $item)) / ($item - 1));
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.productPage {
+    margin: 0 10% 0;
+    &__products {
+        &__list {
+            width: 100%;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px gapCalc(4, 100%);
+            &__element {
+                width: $cardWidth;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &__filter {
+        &__search {
+            background-color: $colors-active;
+            color: $colors-text;
+            h1 {
+                border-bottom: 3px solid $color-effect;
+            }
+            input {
+                outline: none;
+                width: 100%;
+            }
+        }
+        &__price * {
+            color: $colors-text;
+        }
+        &__price {
+            background-color: $colors-active;
+            h1 {
+                border-bottom: 3px solid $color-effect;
+            }
+            button {
+                border: none;
+                background-color: $color-effect;
+                color: $colors-text;
+                clip-path: polygon(90% 0, 100% 34%, 100% 100%, 10% 100%, 0 66%, 0 0);
+            }
+        }
+        &__categlory {
+            background-color: $colors-active;
+            h1 {
+                color: $colors-text;
+                border-bottom: 3px solid $color-effect;
+            }
+        }
+        &__submit {
+            border: none;
+            background-color: $color-effect;
+            color: $colors-text;
+        }
+    }
+}
+
+:host ::ng-deep {
+    .p-dataview,
+    .p-dataview-header,
+    .p-dataview-content,
+    .p-paginator-bottom {
+        background: none;
+        border: none;
+    }
+    .p-dropdown {
+        width: 14rem;
+        font-weight: normal;
+    }
+    .product-list-item {
+        display: flex;
+        padding: 1rem;
+        width: 100%;
+        img {
+            width: 150px;
+            margin-right: 2rem;
+        }
+        .p-button {
+            margin-bottom: 0.5rem;
+        }
+    }
+    .product-grid-item {
+        margin: 0.5em;
+        &__top {
+            img {
+                border-radius: 15px;
+                width: 100%;
+            }
+            h2 {
+                color: $colors-text;
+            }
+        }
+        &__bottom {
+            display: flex;
+            justify-content: space-between;
+            span {
+                color: $colors-text;
+            }
+            button {
+                color: $colors-text;
+                background-color: $color-effect;
+            }
+        }
+    }
+    .p-slider-range {
+        background-color: $color-effect;
+    }
+}
+
+@media screen and (max-width: 576px) {
+     :host ::ng-deep .product-list-item {
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 75%;
+            margin: 2rem 0;
+        }
+        .product-list-detail {
+            text-align: center;
+        }
+        .product-price {
+            align-self: center;
+        }
+        .product-list-action {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-list-action {
+            margin-top: 2rem;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+<div class="layout">
+    <div class="layout__content">
+        <header class="position-fixed top-0 layout__content__top" style="z-index: 999;">
+            <app-top-nav></app-top-nav>
+        </header>
+        <div style="padding: 5%;">
+        </div>
+        <div class="layout__content__body">
+            <ng-content></ng-content>
+        </div>
+        <div class=" top-0 right-0 layout__content__body__right" style="z-index: 999;">
+            <app-cart-nav></app-cart-nav>
+        </div>
+        <div class="layout__content__bottom">
+            <app-bottom-nav></app-bottom-nav>
+        </div>
+    </div>
+
+</div>

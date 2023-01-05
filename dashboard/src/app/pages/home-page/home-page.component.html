@@ -1,0 +1,46 @@
+<app-elements *ngIf="element" [element]="element"></app-elements>
+<app-chart1></app-chart1>
+<div class="row">
+    <div class="col-sm-7">
+        <h2>Best Seller</h2>
+        <table class="table" *ngIf="bestSeller">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of bestSeller;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item._id.productName}}</td>
+                    <td>{{item._id.price | currency:'USD'}}</td>
+                    <td>{{item.count}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-5">
+        <h2>New Product</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listProduct;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.price | currency:'USD'}}</td>
+                    <td>{{item.isActive}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

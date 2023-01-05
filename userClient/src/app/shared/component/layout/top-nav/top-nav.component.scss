@@ -1,0 +1,182 @@
+@import "/src/assets/scss/color.scss";
+* {
+    box-sizing: border-box;
+}
+
+.topBar {
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-background-1;
+    &__logo {
+        text-decoration: none;
+        color: $colors-text;
+        font-weight: bold;
+    }
+    &__link {
+        font-size: 1.2vw;
+        color: $colors-text;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+            color: $colors-text;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 6% 40px;
+            height: 100%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        a:hover {
+            transition-duration: 0.7s;
+            background-color: $colors-active;
+            box-shadow: inset 0 -14px $color-effect;
+        }
+    }
+    &__search {
+        height: 50%;
+        color: $colors-text;
+        border-radius: 20px;
+        button {
+            border: none;
+            color: $colors-text;
+            background-color: #1f2029;
+            outline: none;
+            font-size: 20px;
+            cursor: pointer;
+            height: 100%;
+        }
+    }
+    &__auth {
+        font-size: 20px;
+        display: flex;
+        gap: 25px;
+        height: 3rem;
+        padding: 0;
+        a {
+            position: relative;
+            color: #eeeeee;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+        }
+        a:first-child {
+            padding: 15px;
+            background-color: #2e343a;
+            box-shadow: inset -3px 0 #ff8503;
+        }
+        small {
+            font-size: 1vw;
+            position: absolute;
+            padding: 0 6px;
+            background-color: red;
+            border-radius: 50%;
+            top: 3.5%;
+            right: 5%;
+        }
+        i {
+            font-size: 20px;
+        }
+        select {
+            width: 20px;
+        }
+    }
+    &__isLogin {
+        display: flex;
+        justify-content: center;
+        img {
+            border-radius: 50%;
+        }
+        span {
+            font-size: 10px;
+        }
+    }
+    &__searchButton {
+        position: fixed;
+        top: 4%;
+        right: 5%;
+        display: none;
+        cursor: pointer;
+        color: #eeeeee;
+        font-size: 33px;
+    }
+}
+
+.dropdownhide {
+    display: none;
+}
+
+.dropdownshow {
+    display: block;
+    position: absolute;
+    button {
+        padding: 10px;
+        color: #eeeeee;
+        background-color: #2e343a;
+    }
+}
+
+.navMenuButton {
+    position: absolute;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.navMenu {
+    &__button {
+        position: fixed;
+        top: 4%;
+        left: 5%;
+        cursor: pointer;
+        display: none;
+        color: #eeeeee;
+        font-size: 35px;
+    }
+}
+
+.active {
+    padding: 15px;
+    background-color: #505a64;
+    box-shadow: inset 0 -14px #ff8503;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .topBar {
+        justify-content: center;
+    }
+    .topBar__logo {
+        width: 50%;
+        animation-name: tranx;
+    }
+    .topBar__search {
+        display: none;
+    }
+    .topBar__button {
+        display: none;
+    }
+    .topBar__searchButton {
+        display: block;
+    }
+    .navMenu__button {
+        display: block;
+    }
+}

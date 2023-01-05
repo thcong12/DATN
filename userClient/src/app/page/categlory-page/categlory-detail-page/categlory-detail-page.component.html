@@ -1,0 +1,22 @@
+<div class="container pt-4">
+    <div class="">
+        <h1 style="color: #EEEEEE;font-weight: 600;" class="fs-1">
+            {{cateName}}
+        </h1>
+        <button style="font-size: 20px;color:#eeeeee;border-radius: 50%;" class="btn bi bi-chevron-left" (click)="onPrevious()" [disabled]="counter===0"></button>
+        <div *ngFor="let item of listProduct">
+
+            <div>
+                <img [src]="item.imgX.url" width="30%">
+                <div>
+                    <h2>{{item.productName}}</h2>
+                </div>
+            </div>
+
+        </div>
+        <button (click)="onNext()" [disabled]="counter == listProduct.length - 4" style="font-size: 20px;color:#eeeeee;border-radius: 50%;" class="btn bi bi-chevron-right"></button>
+    </div>
+    <div>
+
+    </div>
+</div>

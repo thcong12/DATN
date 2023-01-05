@@ -1,0 +1,25 @@
+<div class=" slideShow">
+    <div class="d-flex justify-content-center">
+        <h2 class="slideShow__title">Feature</h2>
+    </div>
+
+    <div class="slideShow__item" *ngIf="productSlider">
+        <div class="slideShow__item__big" *ngFor="let item1 of productSlider; let i = index" [ngClass]="{ 'img-active': selectedIndex === i }">
+            <img [src]="item1.productId.imgY.url" class="cc" />
+            <div class="slideShow__item__big__blur"></div>
+            <div class="slideShow__item__big__info">
+                <h2>{{ item1.productId.productName }}</h2>
+                <h5>{{item1.productId.price - (item1.productId.price*item1.productId.sale.salePersent/100) | currency:'USD'}} <del> {{item1.productId.price |currency:'USD'}}</del></h5>
+                <p>
+                    {{item1.productId.shortDescription}}
+                </p>
+                <button class="bi bi-cart-plus"> Add to cart</button>
+                <button class="bi bi-heart"> Wish list</button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end slideShow__item__small">
+            <img *ngFor="let item of productSlider; let i = index" [ngClass]="{  active: selectedIndex === i }" (click)="slideShow(i)" [style.z-index]="productSlider.length - i" [src]="item.productId.imgX.url" />
+        </div>
+    </div>
+</div>

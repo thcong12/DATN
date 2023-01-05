@@ -1,0 +1,17 @@
+.onsalePage {
+    padding: 0 9%;
+}
+
+.cc {
+    animation-name: cc;
+    animation-duration: 1s;
+}
+
+@keyframes cc {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

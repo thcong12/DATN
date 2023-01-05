@@ -1,0 +1,36 @@
+<div class="row" style="padding: 2% 5%">
+    <div class="col-12 mx-2 p-2" style="box-shadow: 0 10px 5px 0 #1f2029">
+        <h1 style="color: #eeeeee">YOUR SHOPPING CART</h1>
+    </div>
+    <div *ngIf="userCart" style="color: #eeeeee;" class="col-sm-8 mt-3">
+        <div style="color: #eeeeee;">
+            <div class="d-flex flex-column gap-2 justify-content-start px-4">
+                <div class="row py-2 d-flex align-items-center" *ngFor="let item of userCart.cartDetail" style="background-color: #505a64;border-radius: 10px;">
+                    <div class="col-sm-2">
+                        <img [src]="item.product.imgX.url" width="50%" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h2>{{ item.product.productName }}</h2>
+                    </div>
+                    <div class="col-sm-2">
+                        <del>{{ item.product.price | currency : "USD" }}</del>
+                        <b>{{
+              item.product.price - item.product.sale.salePersent
+                | currency : "USD"
+            }}</b>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn bi bi-x"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2" style="border-bottom: 1px soild black">
+                <button class="btn bi bi bi-arrow-left" style="color: #eeeeee;" type="button"></button>
+                <label>Continue Shopping</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-3" style="background-color: #505a64;border-radius: 10px;">
+        <app-payment-checkout-form *ngIf="userCart" [userCart]="userCart"></app-payment-checkout-form>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+<div class="listProduct">
+    <div class="d-flex justify-content-center">
+        <h2 class="fs-1 pb-2" style="border-bottom: 5px solid #ff8503;color: #eeeeee;">
+            List Product
+        </h2>
+    </div>
+
+    <div class="listProduct__link">
+        <a *ngFor="let item of listLink" [id]="item.id" (click)="display(item.id)">{{ item.content }}</a
+    >
+  </div>
+  <div
+    class="p-2"
+    style="
+      width: 100%;
+      border: 1px solid white;
+      border-radius: 0 10px 10px 10px;
+    "
+  >
+    <div style="width: 100%" *ngFor="let item of listLink">
+      <div class="listProduct__list" *ngIf="id === item.id">
+        <div class="listProduct__list__page">
+          <div class="me-2 text-end">
+            <button
+              class="btn"
+              style="color: #eeeeee; border: 1px solid #eeeeee"
+            >
+              See more
+            </button>
+          </div>
+          <div
+            class="row ms-1 pe-1"
+            *ngFor="let product of item.products; let i = index"
+            [ngClass]="{
+              active: selectedIndex === i,
+              'background-active': selectedIndex === i
+            }"
+            (mouseenter)="slideShow(i)"
+          >
+            <img
+              class="col-2"
+              [src]="product.product.imgY.url + '?h=140&resize=1&w=80'"
+            />
+            <div
+              class="col-7 d-flex flex-column justify-content-between"
+              style="width: 60%"
+            >
+              <h4>{{ product.product.productName }}</h4>
+              <div class="d-flex gap-1 flex-wrap">
+                <a
+                  style="
+                    text-decoration: none;
+                    color: #eeeeee;
+                    padding: 1% 2%;
+                    border-radius: 10px;
+                    border: 1px solid #eeeeee;
+                  "
+                  *ngFor="let item of product.productDetail.categlory"
+                  >{{ item.cateName }}
+                </a>
+    </div>
+</div>
+<div class="col-1 d-flex align-items-center">
+    <span style="
+                  text-align: center;
+                  font-size: 15px;
+                  padding: 5px 7px;
+                  background-color: #00adb5;
+                  border-radius: 5px;
+                ">-{{ product.product.sale.salePersent }}%</span
+              >
+            </div>
+
+            <div
+              class="col-2 d-flex flex-column justify-content-center"
+              style="width: 10%"
+            >
+              <del *ngIf="product.product.price">{{
+                product.product.price | currency: "USD"
+              }}</del>
+              <h2 class="mb-2">
+                {{
+                  product.product.price -
+                    (product.product.price * product.product.sale.salePersent) / 100
+                    | currency: "USD"
+                }}
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-3 listProduct__list__detail cc"
+          *ngFor="let product of item.products; let i = index"
+          [ngClass]="{ 'img-active': selectedIndex === i }"
+        >
+          <div *ngIf="product">
+            <h2>{{ product.product.productName }}</h2>
+            <div class="position-relative">
+              <div
+                class=""
+                *ngFor="let item of product.productDetail?.imgList; let i = index"
+              >
+                <img
+                  class="cc"
+                  width="100%"
+                  height="100%"
+                  *ngIf="i === counter"
+                  [src]="item.url + '?h=270&resize=1&w=480'"
+                />
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center position-absolute top-0 left-0"
+                style="width: 100%; height: 100%"
+              >
+                <button
+                  style="color: #eeeeee"
+                  class="btn bi bi-chevron-left"
+                  (click)="onPrevious()"
+                  [disabled]="counter === 0"
+                ></button>
+                <button
+                  (click)="onNext(product.productDetail?.imgList)"
+                  [disabled]="counter == product.productDetail?.imgList.length - 1"
+                  style="color: #eeeeee"
+                  class="btn bi bi-chevron-right"
+                ></button>
+              </div>
+            </div>
+            <br />
+            <div class="d-flex gap-1 flex-wrap">
+              <a *ngFor="let item of product.productDetail?.categlory; let i = index"
+                >{{ item.cateName }}
+              </a>
+            </div>
+
+            <div class="my-3 d-flex justify-content-between">
+              <span class="mb-2 fs-6"><b> Developer : </b></span>
+
+    <span class="mb-2 fs-6">{{
+                product.productDetail?.developer.devName
+              }}</span>
+</div>
+
+<p>{{ product.product.shortDescription }}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

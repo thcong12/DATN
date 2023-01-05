@@ -1,0 +1,159 @@
+<div class="container row productPage">
+    <div class="col-9 productPage__products">
+        <div class="row pb-2 d-flex justify-content-between">
+            <div class="col-auto">
+                <select [(ngModel)]="sortSelect.value" class="form-control">
+          <option ngValue='-1'>Select field to sort</option>
+          <option *ngFor="let item of sortOptions" [ngValue]="item.value">
+            {{ item.label }}
+          </option>
+        </select>
+            </div>
+
+            <div class="col-auto d-flex align-items-center gap-1">
+                <button class="btn bg-light bi bi-grid"></button>
+                <button class="btn bg-light bi bi-list"></button>
+            </div>
+        </div>
+        <div class="py-4 text-center" style="color:#eeeeee;" *ngIf="listProduct.length == 0">
+            <h1>No results found</h1>
+            <span>
+        Unfortunately I could not find any results matching your search.
+      </span>
+        </div>
+        <div class="row d-flex flex-wrap" *ngIf="listProduct">
+            <div class="col-3 d-flex flex-column gap-2" *ngFor="
+          let item of listProduct.slice(
+            (page - 1) * numberProduct,
+            page * numberProduct
+          ) | sortList : sortSelect?.value
+        ">
+                <div class="">
+                    <img width="100%" height="100%" [src]="item.imgX.url + '?h=200&resize=1&w=150'" />
+                </div>
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                    <a class="fs-6" style="color: #eeeeee; text-decoration: none" (click)="getProductDetail(item._id)">{{ item.productName }}</a
+          >
+   
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <b
+            style="
+              color: #eeeeee;
+              background-color: #00adb5;
+              padding: 2% 3%;
+              border-radius: 5px;
+            "
+            >{{ item.sale.salePersent }}%</b
+          >
+          <h4 style="color: #eeeeee" class="mt-2">
+            {{
+              item.price - (item.price * item.sale.salePersent) / 100
+                | currency : "USD"
+            }}
+            <del> {{ item.price | currency : "USD" }}</del>
+          </h4>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center gap-2">
+        <span
+          style="color: #eeeeee"
+          class="btn p2"
+          (click)="changePage(page - 1)"
+          *ngIf="listProduct.length > numberProduct"
+        >
+          Prev
+        </span>
+        <div class="d-flex gap-2 justify-content-center" #numberPage>
+          <button
+            class="btn"
+            style="background-color: #ff8503; color: #eeeeee"
+            *ngFor="let item of aaa"
+            (click)="changePage(item)"
+          >
+            {{ item }}
+          </button>
+        </div>
+        <span
+          style="color: #eeeeee"
+          class="btn p2"
+          (click)="changePage(page + 1)"
+          *ngIf="listProduct.length > numberProduct"
+        >
+          Next
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <form
+    class="col-3 flex flex-column gap-3 productPage__filter"
+    [formGroup]="filterForm"
+    (submit)="submitForm()"
+  >
+  <div class="p-3 productPage__filter__search">
+    <h1>SEARCH</h1>
+    <input class="p-2" #input type="text" />
+</div>
+    <div class="col-12 p-3 productPage__filter__price">
+      <h1>PRICE FILTER</h1>
+      <h3 class="px-3 py-2">
+        Price:
+        {{
+          "$ " +
+            valuePrice.controls[0].value +
+            " - $ " +
+            valuePrice.controls[1].value
+        }}
+      </h3>
+      <p-slider
+        [formControlName]="controlName.value"
+        [range]="true"
+        [style]="{ 'background-color': 'black' }"
+      ></p-slider>
+    </div>
+    <div class="col-12 p-3 productPage__filter__categlory">
+      <h1>Tag</h1>
+      <p-dropdown
+        [options]="listCateglory"
+        optionLabel="cateName "
+        [filter]="true"
+        filterBy="cateName"
+        [showClear]="true"
+        placeholder="Select a Categlory "
+      >
+        <!-- <ng-template pTemplate="selectedItem ">
+            <div class="country-item country-item-value ">
+                <div></div>
+            </div>
+        </ng-template> -->
+        <ng-template let-cate pTemplate="item ">
+          <div class="country-item">
+            <div (click)="addCateglory(cate)">{{ cate.cateName }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <div class="ps-2 mt-3 grid gap-1">
+        <p-chip
+          *ngFor="let item of categloryList?.controls; let i = index"
+          [label]="item.value.cateName"
+          (onRemove)="removeCateglory(i)"
+          [removable]="true"
+          [style]="{ 'border-radius': '0' }"
+        ></p-chip>
+      </div>
+    </div>
+    <div class="col-12 p-3 productPage__filter__categlory">
+      <h1>Developer</h1>
+      <p-dropdown [options]="listDeveloper" [formControlName]="controlName.developer" optionLabel="devName" [filter]="true" filterBy="devName" [showClear]="true" placeholder="Select a developer">
+        <ng-template let-item pTemplate="item">
+            <div class="country-item">
+                <div>{{item.devName}}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+    </div>
+    <button class="col-12 py-2 btn productPage__filter__submit" type="submit ">Search</button>
+  </form>
+</div>

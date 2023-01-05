@@ -1,0 +1,30 @@
+<div class="pt-5 row loginPage">
+    <span class=" fs-1 text-center" style="color: #eeeeee">Login</span>
+    <form class="col-sm-5 mt-5 bg-dark  d-flex flex-column  gap-2" [formGroup]="formLogin" (submit)="loginSubmit()" style="height:45%;padding: 3% 5%;">
+
+        <input class="form-control" id="userName" type="text" [formControlName]="controlLogin.userName" placeholder="User Name" />
+        <input class="form-control" id="password" type="password" [formControlName]="controlLogin.password" placeholder="Password" />
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                <label style="color: #eeeeee" class="form-check-label" for="exampleCheck1">Remember me</label>
+            </div>
+            <a style="cursor: pointer; color: blue" (click)="showDialog()">Forgot the password</a
+      >
+    </div>
+    <a routerLink="/auth/register">Click here if you dont have any account</a>
+            <button class="btn btn-primary" type="submit">Login</button>
+            <h1 class="text-center" style="color: #eeeeee;">Or</h1>
+            <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-danger bi bi-google" type="button"></button>
+                <button class="btn btn-primary bi bi-facebook" type="button"></button>
+            </div>
+    </form>
+    </div>
+    <p-dialog header="Title" [(visible)]="display" [breakpoints]="{ '960px': '75vw', '640px': '100vw' }" [style]="{ width: '55%' }">
+        <form [formGroup]="formChangePassword" (submit)="changePasswordSubmit()">
+            <input class="form-control" id="userName" type="text" [formControlName]="controlChangePassword.userName" placeholder="User Name" />
+            <input class="mt-2 form-control" id="userName" type="text" [formControlName]="controlChangePassword.email" placeholder="Email" />
+            <button class="mt-2 btn btn-primary" type="submit">Submit</button>
+        </form>
+    </p-dialog>

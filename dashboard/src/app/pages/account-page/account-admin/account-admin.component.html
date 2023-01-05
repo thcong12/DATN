@@ -1,0 +1,48 @@
+<div class="row d-flex align-items-center mt-3 mb-3">
+    <div class="col-sm-3">
+        <h1 class="">Table categlory</h1>
+    </div>
+    <div class="col-sm-5">
+        <input class="form-control">
+    </div>
+    <div class="col-sm-4 row d-flex justify-content-between">
+        <select class="col-5 form-control" placeholder="Select a City" optionLabel="name">
+            <option>-Select value-</option>
+        </select>
+        <button class="col-6 btn btn-primary">
+            Add new Account
+        </button>
+    </div>
+</div>
+
+
+<div class="px-3">
+    <table class="table table-light px-2">
+        <thead>
+            <tr class="text-center row ">
+                <th scope="row" class="col-1 border-end">#</th>
+                <th scope="col" class="col border-end">User Name</th>
+                <th scope="col" class="col border-end">Email</th>
+                <th scope="col" class="col border-end">Type Admin</th>
+                <th scope="col" class="col border-end">Active</th>
+                <th scope="col" class="col border-end">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row text-center" *ngFor="let item of accountAdmins;let i = index">
+                <th scope="row" class="col-1 py-3">{{i+1}}</th>
+                <td class="col py-3">{{item.userName}}</td>
+                <td class="col py-3">{{item.email}}</td>
+                <td class="col py-3 text-break">{{item.typeAdmin.adminType}}</td>
+                <td class="col py-3">
+                    <span class="px-3 py-1 border border-2 border-secondary rounded ">{{item.isActive}}</span>
+                </td>
+                <td class="col">
+                    <button class="btn btn-success">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

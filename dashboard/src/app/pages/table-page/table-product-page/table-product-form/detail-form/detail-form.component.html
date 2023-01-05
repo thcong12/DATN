@@ -1,0 +1,73 @@
+<form class="needs-validation" [formGroup]="productDetailForm" (submit)="changeProductDetail()">
+    <div class="row">
+        <div class="col-12">
+            <label for="name" class="form-label">Categlory</label>
+            <div class="d-flex gap-2" [formArrayName]="controlDetail.categlory">
+                <div *ngFor="let cate of categloryList?.controls; let i = index" [formGroupName]="i">
+                    <p-chip [label]="cate.value.cateName" styleClass="p-mr-2 " [removable]="true" (onRemove)="removeCateglory(i)"></p-chip>
+                </div>
+                <button type="button" class="btn bi bi-plus-circle-fill" (click)="displayModalCategolry = true"></button>
+                <p-dialog header="Header" [(visible)]="displayModalCategolry" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                    <div class="d-flex flex-wrap gap-2">
+                        <p-chip [style]="{ cursor: 'pointer' }" *ngFor="let item of categlorys" [label]="item.cateName" styleClass="p-mr-2 " (click)="addCateglory(item)"></p-chip>
+                    </div>
+                </p-dialog>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="name" class="form-label">Img List</label>
+            <div class="mb-4 input-group">
+                <input #src type="text" class="me-2 form-control" id="name" placeholder="Src image" />
+                <input #title type="text" class="form-control" id="name" placeholder="Alt image" />
+                <button type="button" (click)="addImage(src.value, title.value)" class="col-sm-1 btn bi bi-plus-circle"></button>
+            </div>
+            <div class="px-1 row" [formArrayName]="controlDetail.imgList">
+                <div class="mb-2 col-4 imgList" *ngFor="let img of imgList?.controls; let i = index" [formGroupName]="i">
+                    <img [alt]="img.get(controlDetail.title)?.value" [src]="img.get(controlDetail.url)?.value" height="142 " width="255 " />
+                    <div class="imgList__hover">
+                        <button class="bi bi-eye"></button>
+                        <button (click)="deleteImg(i)" class="bi bi-trash"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="developer " class="form-label">Description</label>
+            <p-editor [formControlName]="controlDetail.description" [style]="{'height':'320px'}"></p-editor>
+        </div>
+        <div class="col-sm-6">
+            <label for="developer " class="form-label">Developer</label>
+            <select class="form-select" [formControlName]="controlDetail.developer">
+        <option [value]="i._id" *ngFor="let i of developers.sort()">
+          {{ i.devName }}
+        </option>
+      </select>
+        </div>
+        <div class="col-sm-6">
+            <label for="developer " class="form-label">SystemRequiment</label>
+            <button (click)="showModalDialog()" class="col-sm-1 btn bi bi-plus-circle" type="button"></button>
+            <div class="px-1 row" [formArrayName]="controlDetail.systemrequiment">
+                <div class="mb-2 col-4 imgList" *ngFor="let img of systemrequimentList?.controls; let i = index" [formGroupName]="i">
+                    <span>{{img}}</span>
+                </div>
+
+                <p-dialog header="Header" [(visible)]="displayModalSystemRequiment" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                    <div>
+                        <input #os type="text" class="me-2 form-control" id="name" placeholder="os">
+                        <input #cpu type="text" class="me-2 form-control" id="name" placeholder="cpu">
+                        <input #memory type="text" class="me-2 form-control" id="name" placeholder="memory">
+                        <input #gpu type="text" class="me-2 form-control" id="name" placeholder="gpu">
+                        <input #directX type="text" class="me-2 form-control" id="name" placeholder="directX">
+                        <input #soundCard type="text" class="me-2 form-control" id="name" placeholder="soundCard">
+                    </div>
+                    <ng-template pTemplate="footer">
+                        <button (click)="addSystemrequiment(os.value,cpu.value,memory.value,gpu.value,directX.value,soundCard.value)" type="button">Create</button>
+                    </ng-template>
+                </p-dialog>
+            </div>
+        </div>
+
+
+        <button class="mt-3 btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>

@@ -1,0 +1,83 @@
+{
+    "_id": "333212",
+    "data": {
+        "locationCode": "UK-555-5566",
+        "mode": "retail",
+        "caseHandler": "A N Other",
+        "cases": [{
+                "caseId": "CSE525666",
+                "items": [{
+                        "id": "333212-CSE525666-1",
+                        "type": "hardware",
+                        "subType": "print cartridge",
+                        "targetDate": "2020-06-15",
+                        "itemDetail": {
+                            "description": "acme print cartridge",
+                            "quantity": 2,
+                            "weight": "1.5"
+                        },
+                        "result": {
+                            "decision": "rejected",
+                            "decisionDate": "2019-02-02"
+                        },
+                        "isPriority": true
+                    },
+                    {
+                        "id": "333212-CSE525666-2",
+                        "type": "Stationery",
+                        "subType": "other",
+                        "targetDate": "2020-06-15",
+                        "itemDetail": {
+                            "description": "staples box",
+                            "quantity": 3,
+                            "weight": "1.66"
+                        },
+                        "result": {
+                            "decision": "accepted",
+                            "decisionDate": "2020-03-03",
+                            "itemValue": "23.01"
+                        },
+                        "isPriority": true
+                    }
+                ]
+            },
+            {
+                "caseId": "CSE885655",
+                "items": [{
+                        "id": "333212-CSE885655-1",
+                        "type": "marine goods",
+                        "subType": "fish food",
+                        "targetDate": "2020-06-04",
+                        "itemDetail": {
+                            "description": "fish bait",
+                            "quantity": 5,
+                            "weight": "0.65"
+                        },
+                        "result": {
+                            "decision": "accepted",
+                            "decisionDate": "2020-03-02"
+                        },
+                        "isPriority": false
+                    },
+                    {
+                        "id": "333212-CSE885655-4",
+                        "type": "tobacco products",
+                        "subType": "cigarettes",
+                        "deadlineDate": "2020-06-15",
+                        "itemDetail": {
+                            "description": "rolling tobbaco",
+                            "quantity": 42,
+                            "weight": "2.25"
+                        },
+                        "result": {
+                            "decision": "accepted",
+                            "decisionDate": "2020-02-02",
+                            "itemValue": "48.15"
+                        },
+                        "isPriority": true
+                    }
+                ]
+            }
+        ]
+    }
+}

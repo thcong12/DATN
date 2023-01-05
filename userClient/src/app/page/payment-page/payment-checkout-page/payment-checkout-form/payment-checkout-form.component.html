@@ -1,0 +1,29 @@
+<form class="p-3 row g-2" [formGroup]="checkOutForm" #data style="color: #eeeeee;">
+    <div class="row g-2">
+        <div class="col-12 row">
+            <label class="form-label" for="address">Payment Method</label>
+            <div class="col-sm-6 form-check" *ngFor="let item of paymentMethod" (click)="optionPayment(item.value)">
+                <input name="paymentMethod" [value]="item.value" type="radio" class="form-check-input" [formControlName]="controlName.paymentMethod">
+                <img [src]="item.img" width="30px" height="30px" />
+                <label class="form-check-label" [for]="item.value">{{item.name}}</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Discounts</label>
+            <select class="form-control" [formControlName]="controlName.disCountCode">
+                <option *ngFor="let item of discountList" [value]="item.discount">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="">
+            <label></label>
+            <h2><b>Total: </b>{{totalprice?.value | currency:'USD'}}</h2>
+        </div>
+    </div>
+    <div *ngIf="paymentOption == 'paypal'">
+        <checkoutPaypal [cartId]="userCart._id" [order]="checkOutForm"></checkoutPaypal>
+    </div>
+
+    <div *ngIf="paymentOption == 'momo'">
+        <checkOutMomo [cartId]="userCart._id" [order]="checkOutForm"></checkOutMomo>
+    </div>
+</form>

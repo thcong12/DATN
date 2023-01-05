@@ -1,0 +1,58 @@
+<div class="row d-flex align-items-center mt-3 mb-3">
+    <div class="col-sm-3">
+        <h1 class="">Table categlory</h1>
+    </div>
+    <div class="col-sm-5">
+        <input class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <p-dropdown [options]="option" [(ngModel)]="select" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+        <p-button (click)="createCateglory()" class="text-nowrap ms-2" label="Add new product">
+        </p-button>
+    </div>
+</div>
+
+<div class="px-3">
+    <table class="table table-light px-2">
+        <thead>
+            <tr class="text-center row">
+                <th scope="col" class="col-1 border-end">#</th>
+                <th scope="col" class="col-3 border-end">Name</th>
+                <th scope="col" class="col border-end">Description</th>
+                <th scope="col" class="col-2 border-end">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row text-center" *ngFor="let item of categlorys; let i = index">
+                <th scope="row" class="col-1 py-3">{{ i + 1 }}</th>
+                <td class="col-3 py-3">{{ item.cateName }}</td>
+                <td class="col py-3">{{ item.description }}</td>
+                <td class="col-2">
+                    <button class="btn btn-primary me-1" (click)="getCateglory(item._id)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+                    <button class="btn btn-success">
+            <i class="bi bi-person"></i>
+          </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <form class="row" [formGroup]="categloryForm">
+        <div class="col-12 ">
+            <label class="form-label">Categlory Name</label>
+            <input class="form-control" [formControlName]="controlName.cateName" />
+        </div>
+        <div class="col-12 mt-3">
+            <label class="form-label">Description</label>
+            <input class="form-control" [formControlName]="controlName.description" />
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button *ngIf="createNew" icon="pi pi-check" (click)="confirmCreate()" label="Create" styleClass="p-button-text"></p-button>
+        <p-button *ngIf="!createNew" icon="pi pi-check" (click)="confirmUpdate()" label="Update" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

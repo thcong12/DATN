@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+.homePageSlide {
+    width: 100%;
+    height: 100%;
+    min-height: 47vw;
+    margin-bottom: 5%;
+    img {
+        width: 100%;
+        height: 47vw;
+    }
+    &__page {
+        padding: 0 5%;
+        display: flex;
+        width: 100%;
+        position: absolute;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        height: 47vw;
+        top: 13vh;
+        &__detail {
+            font-weight: bold;
+            a {
+                font-size: 1.2vw;
+                padding: 15px 20px;
+                border: 2px solid #ff8503;
+                color: #fdfdfd;
+                clip-path: polygon(90% 0, 100% 34%, 100% 100%, 10% 100%, 0 66%, 0 0);
+                transition-duration: 0.4s;
+            }
+            a:hover {
+                transition-duration: 0.7s;
+                box-shadow: inset 12vw 0 #ff8503;
+            }
+        }
+    }
+}
+
+:host ::ng-deep .p-megamenu-panel {
+    background-color: #212529;
+    li {
+        background-color: #212529;
+    }
+}

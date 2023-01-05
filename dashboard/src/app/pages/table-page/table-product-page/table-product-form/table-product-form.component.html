@@ -1,0 +1,10 @@
+<h5>Genaral infomation</h5>
+<div class="row">
+    <div [ngClass]="isNewProduct ? 'col-sm-12':'col-sm-6'">
+        <app-product-form [productInfo]="productInfo" (productInfoChange)="formatData($event)"></app-product-form>
+    </div>
+    <div class="col-sm-6">
+        <app-detail-form *ngIf="!isNewProduct" (productDetailChange)="formatDetailData($event)" [productDetail]="productInfo" [categlorys]="categlorys" [developers]="developers"></app-detail-form>
+    </div>
+    <p-toast [baseZIndex]="5000"></p-toast>
+</div>

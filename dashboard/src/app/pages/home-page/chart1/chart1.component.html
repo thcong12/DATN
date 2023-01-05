@@ -1,0 +1,10 @@
+<div class="row py-3 mt-4">
+    <div class="col-sm-2 btn-group " role="group" aria-label="Basic outlined example">
+        <button #a type="button" class="btn btn-outline-primary">All</button>
+        <button #m type="button" (click)="loadData1(data1)" class="btn btn-outline-primary">Month</button>
+        <button #y (click)="loadData(data)" type="button" class="btn btn-outline-primary">Year</button>
+    </div>
+    <div class="col-12">
+        <p-chart height="500px" type="bar" [data]="chartAmount"></p-chart>
+    </div>
+</div>

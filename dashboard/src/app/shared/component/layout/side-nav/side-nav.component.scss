@@ -1,0 +1,14 @@
+@import "src/assets/scss/side-nav.scss";
+:host ::ng-deep {
+    .pi-angle-right:before {
+        content: "";
+    }
+    .p-tieredmenu {
+        width: auto;
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

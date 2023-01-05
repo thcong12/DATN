@@ -1,0 +1,64 @@
+<app-home-page-intro></app-home-page-intro>
+
+<app-home-page-slide></app-home-page-slide>
+
+<app-home-page-onsale></app-home-page-onsale>
+
+<div class="mt-5 listCateglory">
+    <div class="listCateglory__top">
+        <h2>Categlory</h2>
+    </div>
+    <div class="listCateglory__center">
+        <div class="listCateglory__card card1">
+            <img src="https://blog.bestbuy.ca/wp-content/uploads/2021/04/Simulation-Genre-Banner.jpg" />
+            <h3>Simulation</h3>
+        </div>
+        <div class="listCateglory__card card2">
+            <img src="https://blog.bestbuy.ca/wp-content/uploads/2021/04/Sports-Genre-Banner.png" />
+            <h3>Sport</h3>
+        </div>
+        <div class="listCateglory__card card3">
+            <img src="https://blog.bestbuy.ca/wp-content/uploads/2021/05/RPG-Genre-Banner.jpg" />
+            <h3>RPG</h3>
+        </div>
+        <div class="listCateglory__card card4">
+            <img src="https://blog.bestbuy.ca/wp-content/uploads/2020/03/Adventure-Genre-Banner.jpg" />
+            <h3>Adventure</h3>
+        </div>
+    </div>
+</div>
+<app-home-page-product></app-home-page-product>
+
+<app-home-page-list></app-home-page-list>
+<div class="text-center p-2" *ngIf="!(isLogin$ | async) as Boolean">
+    <h1 style="color: #eeeeee">Login to discovery more game for you</h1>
+    <button class="btn bi-person-circle" style="color: #eeeeee;background-color: #2e343a;" routerLink="/auth/login">
+    Login
+  </button>
+</div>
+<div style="color: #eeeeee; padding: 0 7%" *ngIf="isLogin$ | async as Boolean">
+    <h2 class="listCateglory__top" style="color: #eeeeee">
+        Something may you like
+    </h2>
+    <div *ngIf="recomendProduct | async">
+        <div *ngFor="let item of recomendProduct.value" [routerLink]="['/products/detail/',item.product._id]">
+            <h2>{{item.product.productName}}</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <img [src]="item.product.imgY.url + '?h=270&resize=1&w=480'" width="100%" />
+                    <div class="d-flex gap-2 align-items-center">
+                        <h3>
+                            -{{item.product.sale.salePersent }}%
+                        </h3>
+                        <h4><del>{{item.product.price | currency:'USD'}}</del></h4>
+                        <h4><b>{{item.product.price - (item.product.price*item.product.sale.salePersent/100) | currency:'USD'}}</b></h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-3" *ngFor="let item1 of item.productDetail.imgList.slice(0,3)">
+                    <img [src]="item1.url + '?h=270&resize=1&w=480' " width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

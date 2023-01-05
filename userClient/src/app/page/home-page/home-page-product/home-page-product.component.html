@@ -1,0 +1,34 @@
+<div class="newProduct">
+    <div class="newProduct__top">
+        <h2 class="newProduct__top__title">
+            New Products
+        </h2>
+    </div>
+    <div class="newProduct__center" *ngIf="productList">
+        <button style="font-size: 20px;color:#eeeeee;border-radius: 50%;" class="btn bi bi-chevron-left" (click)="onPrevious()" [disabled]="counter===0"></button>
+        <div class="newProduct__product" [@animImageSlider]="counter" *ngFor="let item of productList?.slice(counter,counter+4);let i = index">
+            <div>
+                <img class="newProduct__productImg" [src]="item.imgX.url + '?h=480&resize=1&w=360'" />
+                <div class="newProduct__productHover">
+                    <img [src]="item.imgY.url + '?h=140&resize=1&w=249'" />
+                    <span>{{item.detail?.rating}}/100</span>
+                    <p>
+                        {{item.shortDescription}}
+                    </p>
+                </div>
+                <h3 style="color: #eeeeee;">{{item.productName}}</h3>
+                <div class="newProduct__productInfo">
+                    <b>{{item.sale.salePersent}}%</b>
+                    <strong></strong>
+                    <h4 class="mt-2">{{item.price - (item.price*item.sale.salePersent/100) | currency:'USD'}} <del> {{item.price |currency:'USD'}}</del></h4>
+                </div>
+                <div class="newProduct__productBtn">
+                    <button class="bi bi-cart-plus"> Add to cart</button>
+                    <button class="bi bi-heart"></button>
+                </div>
+            </div>
+
+        </div>
+        <button (click)="onNext()" [disabled]="counter == productList.length - 4" style="font-size: 20px;color:#eeeeee;border-radius: 50%;" class="btn bi bi-chevron-right"></button>
+    </div>
+</div>

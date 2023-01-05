@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 14rem;
+}
+
+.topNav {
+    padding-left: 5%;
+    padding-right: 5%;
+}

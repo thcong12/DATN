@@ -1,0 +1,22 @@
+@import '/src/assets/scss/color.scss';
+.bottomNav {
+    background: url(https://themebeyond.com/demo/gecolive/wp-content/themes/geco/assets/images/bg/s_footer_bg.jpg);
+    width: 100%;
+    min-height: 300px;
+    padding: 5%;
+    * {
+        color: $colors-text;
+    }
+    &__social {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        &__button {}
+        &__input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

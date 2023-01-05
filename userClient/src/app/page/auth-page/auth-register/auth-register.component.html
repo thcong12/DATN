@@ -1,0 +1,17 @@
+<div class="pt-5 page_register">
+    <form class="col-sm-5 bg-dark d-flex flex-column gap-2 text-center" [formGroup]="registerForm" (submit)="registerSubmit()" style="height:45%;padding: 3% 5%;">
+        <h1 style="color: #eeeeee;">Register</h1>
+        <input class="form-control" type="text" [formControlName]="controlRegister.userName" placeholder="User Name" />
+        <input class="form-control" type="text" [formControlName]="controlRegister.email" placeholder="Email" />
+        <input class="form-control" type="password" [formControlName]="controlRegister.password" placeholder="Password" />
+        <input class="form-control" type="password" [formControlName]="controlRegister.repassword" placeholder="Re enter password" />
+        <input class="form-control" type="text" [formControlName]="controlRegister.fullName" placeholder="First name" />
+        <input class="form-control" type="text" [formControlName]="controlRegister.phoneNumber" placeholder="Phone Number" />
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <div class="d-flex justify-content-center gap-2">
+            <button class="btn bi bi-google" type="button"></button>
+            <button class="btn bi bi-facebook" type="button"></button>
+            <button class="btn bi bi-telegram" type="button"></button>
+        </div>
+    </form>
+</div>

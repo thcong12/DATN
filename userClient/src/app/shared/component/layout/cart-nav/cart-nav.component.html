@@ -1,0 +1,23 @@
+<div *ngIf="(isLogin$ | async) as Boolean" class="cartList" [ngClass]="cartButton ? 'cartMenu':''">
+    <h2>Cart</h2>
+    <button class="material-icons" (click)="cartMenu()">shopping_cart</button>
+    <div class="cartItems">
+
+        <div class="cartItem" *ngFor="let item  of cart |async">
+            <img [src]="item.product.imgX.url" />
+            <div class="cartItem__info ">
+                <h3>{{item.product.productName}}</h3>
+                <span>{{item.product.price - ((item.product.price*item.product.sale.salePersent)/100) | currency:'USD'}}<del>{{item.product.price | currency:'USD'}}</del></span>
+            </div>
+            <i class="material-icons " (click)="removeCartDetail(item.product._id)">close</i>
+        </div>
+
+    </div>
+    <h2 (click)="checkOut()">Check Out:{{(totalPrice | async | currency:'USD')}}<strong></strong></h2>
+    <div>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,17 @@
+$imgWidth:255px;
+$maxWidth:100%;
+@function gapCaculate($item, $maxWidth) {
+    @if ($item==0) {
+        @return 0;
+    }
+    @else {
+        @return calc(($maxWidth - ($imgWidth * $item)) / ($item - 1));
+    }
+}
+
+.imgList {
+    width: $maxWidth;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px gapCaculate(3, $maxWidth)
+}
